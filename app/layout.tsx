@@ -1,14 +1,14 @@
-import '../styles/global.css';
+import '@styles/global.css';
 
 export const metadata = {
   title: 'Promptopia',
-  description: 'Descubrir y compartir AI Prompts',
+  description: 'Descubrir y compartir AI Prompts'
 }
 
 export default function RootLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="es">
@@ -20,5 +20,5 @@ export default function RootLayout({
         <main className="app">{children}</main>
       </body>
     </html>
-  );
+  )
 }
