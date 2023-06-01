@@ -7,7 +7,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 export const Navbar = () => {
   const isLogged = true;
   const [providers, setProviders] = useState(null);
-
+  const [toogleMenu, setToogleMenu] = useState(false);
   const handlerSignOut = () => {
     signOut();
   };
@@ -83,8 +83,33 @@ export const Navbar = () => {
               alt="profile"
               width={37}
               height={37}
-              // onClick={}
+              onClick={() => setToogleMenu((prev) => !prev)}
             />
+
+            {toogleMenu && (
+              <div className="dropdown">
+                <Link
+                  className="dropdown_link"
+                  href="/profile"
+                  onClick={() => setToogleMenu(false)}
+                >
+                  Mi perfil
+                </Link>
+                <Link
+                  className="dropdown_link"
+                  href="/create-prompt"
+                  onClick={() => setToogleMenu(false)}
+                >
+                  Crear un post
+                </Link>
+                <button 
+                  className="mt-5 w-full black_btn"
+                  onClick={()=> setToogleMenu(false)}
+                >
+                  Salir
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <>
@@ -106,4 +131,4 @@ export const Navbar = () => {
       </div>
     </nav>
   );
-}
+};
