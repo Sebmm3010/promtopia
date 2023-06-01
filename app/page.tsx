@@ -1,3 +1,5 @@
+import { Feed } from "@components";
+
 const Home = () => {
   return (
     <section className="w-full flex-center flex-col">
@@ -14,8 +16,11 @@ const Home = () => {
         el mundo moderno que permite descubrir, crear y compartir indicaciones
         creativas.
       </p>
+
+      {/* Feed */}
+      <Feed />
     </section>
-  );
+  )
 }
 
 export default Home;
