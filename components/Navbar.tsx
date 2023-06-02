@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 export const Navbar = () => {
-  const isLogged = true;
+  const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toogleMenu, setToogleMenu] = useState(false);
   const handlerSignOut = () => {
@@ -34,7 +34,7 @@ export const Navbar = () => {
       </Link>
       {/* Desktop */}
       <div className="sm:flex hidden">
-        {isLogged ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
               Crear un post
@@ -47,7 +47,7 @@ export const Navbar = () => {
             <Link href="/profile">
               <Image
                 className="rounded-full"
-                src="/assets/images/logo.svg"
+                src={session?.user.image || ""}
                 alt="profile"
                 width={37}
                 height={37}
@@ -75,11 +75,11 @@ export const Navbar = () => {
 
       {/* Moviles */}
       <div className="sm:hidden flex relative">
-        {isLogged ? (
+        {session?.user ? (
           <div className="flex">
             <Image
               className="rounded-full"
-              src="/assets/images/logo.svg"
+              src={session?.user.image || ""}
               alt="profile"
               width={37}
               height={37}
@@ -102,9 +102,9 @@ export const Navbar = () => {
                 >
                   Crear un post
                 </Link>
-                <button 
+                <button
                   className="mt-5 w-full black_btn"
-                  onClick={()=> setToogleMenu(false)}
+                  onClick={() => setToogleMenu(false)}
                 >
                   Salir
                 </button>
