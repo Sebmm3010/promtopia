@@ -12,7 +12,7 @@ export const dbConnection = async () => {
   }
 
   try {
-    await moongose.connect(process.env.MONGODB_URI as string);
+    await moongose.connect(process.env.MONGODB_URL as string);
     mongoConnection.isConnected = true;
     console.log("Conectado a mongoDB");
   } catch (error) {
